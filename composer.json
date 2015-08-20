@@ -1,0 +1,35 @@
+{
+	"name": "george-oakling/web-project",
+	"description": "Nette: advanced web project",
+	"type": "project",
+	"license": ["MIT", "BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"require": {
+		"php": ">= 5.4.0",
+		"nette/application": "~2.3.0",
+		"nette/bootstrap": "~2.3.0",
+		"nette/caching": "~2.3.0",
+		"nette/database": "~2.3.0",
+		"nette/di": "~2.3.0",
+		"nette/finder": "~2.3.0",
+		"nette/forms": "~2.3.0",
+		"nette/http": "~2.3.0",
+		"nette/mail": "~2.3.0",
+		"nette/robot-loader": "~2.3.0",
+		"nette/safe-stream": "~2.3.0",
+		"nette/security": "~2.3.0",
+		"nette/utils": "~2.3.0",
+		"latte/latte": "~2.3.0",
+		"tracy/tracy": "~2.3.0",
+		"janmarek/webloader": "^2.4",
+		"oyejorge/less.php": "v1.7.0.5",
+		"components/bootstrap": "^3.3",
+		"components/webfontloader": "^1.6",
+		"nextras/forms": "^1.6",
+		"robmorgan/phinx": "^0.4.4",
+		"dg/ftp-deployment": "^2.2",
+		"joseki/webloader-filters": "^1.0"
+	},
+	"require-dev": {
+		"nette/tester": "~1.4"
+	}
+}

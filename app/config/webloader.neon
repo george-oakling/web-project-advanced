@@ -1,0 +1,27 @@
+extensions:
+	webloader: WebLoader\Nette\Extension
+
+services:
+	lessFilter: WebLoader\Filter\LessFilter
+	cssMinFilter: Joseki\Webloader\CssMinFilter
+	jsMinFilter: Joseki\Webloader\JsMinFilter
+
+webloader:
+	css:
+		default:
+			files:
+				- %appDir%/../vendor/components/bootstrap/css/bootstrap.min.css
+				- {files: ["*.css", "*.less"], from: %appDir%}
+			fileFilters:
+				- @lessFilter
+				- @cssMinFilter
+
+	js:
+		default:
+			files:
+				- %appDir%/../vendor/components/webfontloader/webfontloader.js
+				- %appDir%/../vendor/components/jquery/jquery.min.js
+				- %appDir%/../vendor/components/bootstrap/js/bootstrap.min.js
+				- {files: ["*.js"], from: %appDir%}
+			fileFilters:
+				- @jsMinFilter

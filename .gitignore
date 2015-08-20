@@ -1,0 +1,5 @@
+!.htaccess
+.git
+/vendor
+www/webtemp/jsloader-*
+www/webtemp/cssloader-*
