@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>{ifset title}{include title|striptags} | {/ifset}Name of the web</title>
-	{block head}
-		{control css}
-	{/block}
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="fullcss"  content="{$basePath}/webtemp/{$cssLoaderFile}">
+		<meta name="fulljs"  content="{$basePath}/webtemp/{$jsLoaderFile}">
+		{include enhance.latte|trim}	
+		<!-- critical -->
+		{if isset($fullcss)}
+			{control css|trim}
+		{else}
+			{include criticalcss.latte|strip|trim}
+			<noscript>{control css|trim}</noscript>
+		{/if}
+		<!-- /critical -->
+		<title>{ifset title}{include title|striptags|trim} | {/ifset}Name of the web</title>
+	</head>
+	<body>
+		<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+		{include content|indent:2|trim}
 
-<body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
-
-	{include content}
-
-	{block foot}
-		{control js}
-	{/block}
-</body>
+		<!--{control js|trim}-->
+	</body>
 </html>
