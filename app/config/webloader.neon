@@ -11,7 +11,7 @@ webloader:
 		default:
 			files:
 				- %appDir%/../vendor/components/bootstrap/css/bootstrap.min.css
-				- {files: ["*.css", "*.less"], from: %appDir%}
+				- {files: ["*.css", "*.less"], from: %appDir%/assets}
 			fileFilters:
 				- @lessFilter
 				- @cssMinFilter

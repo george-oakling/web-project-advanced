@@ -12,6 +12,9 @@ abstract class BasePresenter extends Presenter {
 	/** @var \WebLoader\Nette\LoaderFactory @inject */
 	public $webLoader;
 
+	/** @var \Nette\Http\IRequest @inject */
+	public $httpRequest;
+
 	protected $cssLoader, $cssLoaderFile, $jsLoader, $jsLoaderFile;
 
 	public function startup() {
@@ -27,6 +30,12 @@ abstract class BasePresenter extends Presenter {
 		// js file
 		$jsCompiler = $this->jsLoader->getCompiler();
 		$this->jsLoaderFile = $jsCompiler->getOutputNamingConvention()->getFilename($jsCompiler->getFileCollection()->getFiles(), $jsCompiler);
+	}
+
+	public function beforeRender() {
+		$this->template->cssLoaderFile = $this->cssLoaderFile;
+		$this->template->jsLoaderFile = $this->jsLoaderFile;
+		$this->template->fullcss = $this->httpRequest->getCookie('fullcss');
 	}
 
 	/** @return CssLoader */
