@@ -12,6 +12,9 @@ abstract class BasePresenter extends Presenter {
 	/** @var \WebLoader\Nette\LoaderFactory @inject */
 	public $webLoader;
 
+	/** @var \Nette\Http\IRequest @inject */
+	public $httpRequest;
+
 	protected $cssLoader, $cssLoaderFile, $jsLoader, $jsLoaderFile;
 
 	public function startup() {
