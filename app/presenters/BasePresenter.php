@@ -12,12 +12,10 @@ abstract class BasePresenter extends Presenter {
 	/** @var \WebLoader\Nette\LoaderFactory @inject */
 	public $webLoader;
 
-	/** @var \Nette\Http\IRequest @inject */
-	public $httpRequest;
-
 	protected $cssLoader, $cssLoaderFile, $jsLoader, $jsLoaderFile;
 
 	public function startup() {
+
 		parent::startup();
 
 		$this->cssLoader = $this->webLoader->createCssLoader('default');
@@ -25,11 +23,20 @@ abstract class BasePresenter extends Presenter {
 
 		// css file
 		$cssCompiler = $this->cssLoader->getCompiler();
-		$this->cssLoaderFile = $cssCompiler->getOutputNamingConvention()->getFilename($cssCompiler->getFileCollection()->getFiles(), $cssCompiler);
+		$this->cssLoaderFile =
+				//$cssCompiler->getOutputDir() .
+				$cssCompiler->getOutputNamingConvention()->getFilename($cssCompiler->getFileCollection()->getFiles(), $cssCompiler) .
+				'?' .
+				$cssCompiler->getLastModified();
 
 		// js file
 		$jsCompiler = $this->jsLoader->getCompiler();
-		$this->jsLoaderFile = $jsCompiler->getOutputNamingConvention()->getFilename($jsCompiler->getFileCollection()->getFiles(), $jsCompiler);
+		$this->jsLoaderFile = 
+				//$cssCompiler->getOutputDir() .
+				$jsCompiler->getOutputNamingConvention()->getFilename($jsCompiler->getFileCollection()->getFiles(), $jsCompiler) .
+				'?' .
+				$jsCompiler->getLastModified();
+		
 	}
 
 	public function beforeRender() {

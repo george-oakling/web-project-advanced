@@ -4,9 +4,9 @@ require __DIR__ . '/vendor/autoload.php';
 
 $localConfig = Nette\Neon\Neon::decode(file_get_contents(__DIR__ . '/app/config/config.local.neon'));
 $dsn = $localConfig['database']['dsn'];
-$dsnArray = explode(';', $dsn);
+$dsnArray = explode(';dbname=', $dsn);
 $dsnHost = explode(':host=', $dsnArray[0]);
-$dsnDb = str_replace('dbname=', $dsnArray[1]);
+$dsnDb = $dsnArray[1];
 
 $adapter = $dsnHost[0];
 $host = $dsnHost[1];
